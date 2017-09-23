@@ -2,7 +2,7 @@
 
 [kakoune](http://kakoune.org) plugin to interactively iterate over the current selections one by one.
 
-See this [asciinema](https://asciinema.org/a/138332) for a quick demo.
+[![demo](https://asciinema.org/a/138332.png)](https://asciinema.org/a/138332)
 
 ## Install
 
