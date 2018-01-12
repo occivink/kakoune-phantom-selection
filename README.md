@@ -4,7 +4,7 @@
 
 [![demo](https://asciinema.org/a/152289.png)](https://asciinema.org/a/152289)
 
-## Install
+## Setup
 
 Add `phantom-selection.kak` to your autoload dir: `~/.config/kak/autoload/`, or source it manually.
 
