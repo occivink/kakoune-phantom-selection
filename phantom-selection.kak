@@ -6,9 +6,13 @@ declare-option -hidden str phantom_sel_buffer
 
 define-command -hidden phantom-sel-set-option-from-mark %{
     evaluate-commands -buffer %opt{phantom_sel_buffer} "unset-option buffer phantom_selections"
-    eval "set-option buffer phantom_selections \%sh{
-        printf \%s \"$kak_reg_%opt{phantom_sel_register}\" | sed -e 's/\([:@]\)/|PhantomSelection\1/g' -e 's/\(.*\)@.*\%\(.*\)/\2:\1/'
-    }"
+    eval -draft %{
+        set-option buffer phantom_selections %val{timestamp}
+        exec "\"%opt{phantom_sel_register}z"
+        eval -itersel %{
+            set-option -add buffer phantom_selections "%val{selection_desc}|PhantomSelection"
+        }
+    }
     set-option global phantom_sel_buffer %val{bufname}
     try %{ add-highlighter window ranges phantom_selections }
 }
