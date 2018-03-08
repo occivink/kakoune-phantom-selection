@@ -48,8 +48,10 @@ define-command phantom-sel-clear %{
 }
 
 define-command phantom-sel-select-all %{
-    execute-keys "\"%opt{phantom_sel_register}<a-z>a"
-    echo
+    try %{
+        execute-keys "\"%opt{phantom_sel_register}<a-z>a"
+        echo
+    }
 }
 
 define-command phantom-sel-add-selection %{
