@@ -16,6 +16,14 @@ Finally, calling `phantom-sel-select-all` will restore all the dormant selection
 
 Binding the iteration commands in insert mode is especially useful when you want to fill them with different content.
 
+I personally use the following mappings, since I don't find `select onto` too useful. You can use `user` mode instead of `normal`.
+```
+map global normal f     ":phantom-sel-add-selection<ret>"
+map global normal F     ":phantom-sel-select-all<ret>:phantom-sel-clear<ret>"
+map global normal <a-f> ":phantom-sel-iterate-next<ret>"
+map global normal <a-F> ":phantom-sel-iterate-prev<ret>"
+```
+
 ## Customization
 
 The script can be modified by changing the value of the face `PhantomSelection` (default `black,green`) and the option `phantom_sel_register` (default `p`).
