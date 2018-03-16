@@ -25,39 +25,49 @@ define-command -hidden phantom-sel-iterate-impl -params 1 %{
     exec %arg{1}
     # keep the main selection and put all the other in the mark
     try %{
-        execute-keys -draft -save-regs '' "<a-space>\"%opt{phantom_sel_register}Z"
-        execute-keys <space>
+        exec -draft -save-regs '' "<a-space>\"%opt{phantom_sel_register}Z"
+        exec <space>
         phantom-sel-set-option-from-mark
     }
 }
 
-define-command phantom-sel-iterate-next %{
+define-command phantom-sel-iterate-next -docstring "
+Turn secondary selections into phantoms and select the next phantom
+" %{
     phantom-sel-iterate-impl \'
 }
 
-define-command phantom-sel-iterate-prev %{
+define-command phantom-sel-iterate-prev -docstring "
+Turn secondary selections into phantoms and select the previous phantom
+" %{
     phantom-sel-iterate-impl <a-'>
 }
 
-define-command phantom-sel-clear %{
+define-command phantom-sel-clear -docstring "
+Remove all phantom selections
+" %{
     set-register %opt{phantom_sel_register} ''
-    evaluate-commands -buffer %opt{phantom_sel_buffer} "unset-option buffer phantom_selections"
+    eval -buffer %opt{phantom_sel_buffer} "unset-option buffer phantom_selections"
     set-option global phantom_sel_buffer ''
     unset-option buffer phantom_selections
     remove-highlighter window/hlranges_phantom_selections
 }
 
-define-command phantom-sel-select-all %{
+define-command phantom-sel-select-all -docstring "
+Select all phantom selections
+" %{
     try %{
-        execute-keys "\"%opt{phantom_sel_register}<a-z>a"
+        exec "\"%opt{phantom_sel_register}<a-z>a"
         echo
     }
 }
 
-define-command phantom-sel-add-selection %{
-    evaluate-commands -draft -save-regs '' %{
-        try %{ execute-keys "\"%opt{phantom_sel_register}<a-z>a" }
-        execute-keys "\"%opt{phantom_sel_register}Z"
+define-command phantom-sel-add-selection -docstring "
+Create phantoms out of the current selections
+" %{
+    eval -draft -save-regs '' %{
+        try %{ exec "\"%opt{phantom_sel_register}<a-z>a" }
+        exec "\"%opt{phantom_sel_register}Z"
     }
     phantom-sel-set-option-from-mark
 }
