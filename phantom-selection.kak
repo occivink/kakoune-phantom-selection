@@ -20,9 +20,9 @@ define-command -hidden phantom-sel-set-option-from-mark %{
 define-command -hidden phantom-sel-iterate-impl -params 1 %{
     # iterate if we've already started
     try %{
-        execute-keys "\"%opt{phantom_sel_register}<a-z>a"
-        execute-keys %arg{1}
+        exec "\"%opt{phantom_sel_register}<a-z>a"
     }
+    exec %arg{1}
     # keep the main selection and put all the other in the mark
     try %{
         execute-keys -draft -save-regs '' "<a-space>\"%opt{phantom_sel_register}Z"
