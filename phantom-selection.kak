@@ -34,13 +34,13 @@ define-command -hidden phantom-sel-iterate-impl -params 1 %{
 define-command phantom-sel-iterate-next -docstring "
 Turn secondary selections into phantoms and select the next phantom
 " %{
-    phantom-sel-iterate-impl \'
+    phantom-sel-iterate-impl )
 }
 
 define-command phantom-sel-iterate-prev -docstring "
 Turn secondary selections into phantoms and select the previous phantom
 " %{
-    phantom-sel-iterate-impl <a-'>
+    phantom-sel-iterate-impl (
 }
 
 define-command phantom-sel-clear -docstring "

@@ -11,17 +11,20 @@ Add `phantom-selection.kak` to your autoload dir: `~/.config/kak/autoload/`, or 
 ## Usage
 
 With multiple selections, call `phantom-sel-iterate-next` or `phantom-sel-iterate-prev`. The main selection will remain, and the others will be put in a "dormant" state (but still visible). You can then cycle back and forwards by calling these commands again.  
-You can build the phantom selections using normal kakoune primitives or by calling `phantom-sel-add-selection` to add the current one. This is useful when the selections you want are heterogenous and do not share obvious similarities.  
+You can build the phantom selections using normal kakoune primitives or by calling `phantom-sel-add-selection` to add the current ones. This is useful when the selections you want do not share obvious similarities.  
 Finally, calling `phantom-sel-select-all` will restore all the dormant selection, and `phantom-sel-clear` will remove them instead.  
-
-Binding the iteration commands in insert mode is especially useful when you want to fill them with different content.
 
 I personally use the following mappings, since I don't find `select onto` too useful. You can use `user` mode instead of `normal`.
 ```
 map global normal f     ":phantom-sel-add-selection<ret>"
-map global normal F     ":phantom-sel-select-all<ret>:phantom-sel-clear<ret>"
+map global normal F     ":phantom-sel-select-all; phantom-sel-clear<ret>"
 map global normal <a-f> ":phantom-sel-iterate-next<ret>"
 map global normal <a-F> ":phantom-sel-iterate-prev<ret>"
+
+# this would be nice, but currrently doesn't work
+# see https://github.com/mawww/kakoune/issues/1916
+#map global insert <a-f> "<a-;>:phantom-sel-iterate-next<ret>"
+#map global insert <a-F> "<a-;>:phantom-sel-iterate-prev<ret>"
 ```
 
 ## Customization
