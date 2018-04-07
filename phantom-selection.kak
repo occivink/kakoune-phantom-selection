@@ -1,5 +1,5 @@
 declare-option str phantom_sel_register p
-set-face PhantomSelection black,green
+set-face global PhantomSelection black,green
 
 declare-option -hidden range-specs phantom_selections
 declare-option -hidden str phantom_sel_buffer
