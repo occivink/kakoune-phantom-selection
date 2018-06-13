@@ -16,15 +16,18 @@ Finally, calling `phantom-sel-select-all` will restore all the dormant selection
 
 I personally use the following mappings, since I don't find `select onto` too useful. You can use `user` mode instead of `normal`.
 ```
-map global normal f     ":phantom-sel-add-selection<ret>"
-map global normal F     ":phantom-sel-select-all; phantom-sel-clear<ret>"
-map global normal <a-f> ":phantom-sel-iterate-next<ret>"
-map global normal <a-F> ":phantom-sel-iterate-prev<ret>"
+map global normal f     ": phantom-sel-add-selection<ret>"
+map global normal F     ": phantom-sel-select-all; phantom-sel-clear<ret>"
+map global normal <a-f> ": phantom-sel-iterate-next<ret>"
+map global normal <a-F> ": phantom-sel-iterate-prev<ret>"
 
 # this would be nice, but currrently doesn't work
 # see https://github.com/mawww/kakoune/issues/1916
-#map global insert <a-f> "<a-;>:phantom-sel-iterate-next<ret>"
-#map global insert <a-F> "<a-;>:phantom-sel-iterate-prev<ret>"
+#map global insert <a-f> "<a-;>: phantom-sel-iterate-next<ret>"
+#map global insert <a-F> "<a-;>: phantom-sel-iterate-prev<ret>"
+# so instead, have an approximate version that uses 'i'
+map global insert <a-f> "<esc>: phantom-sel-iterate-next<ret>i"
+map global insert <a-F> "<esc>: phantom-sel-iterate-prev<ret>i"
 ```
 
 ## Customization
