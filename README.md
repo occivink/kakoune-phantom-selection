@@ -32,7 +32,7 @@ map global insert <a-F> "<esc>: phantom-sel-iterate-prev<ret>i"
 
 ## Customization
 
-The script can be modified by changing the value of the face `PhantomSelection` (default `black,green`) and the option `phantom_sel_register` (default `p`).
+The script can be modified by changing the value of the face `PhantomSelection` (default `black,green`).
 
 ## License
 
