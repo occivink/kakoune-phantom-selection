@@ -1,17 +1,18 @@
-face global PhantomSelection black,green
+face global PhantomSelection black,green+F
 
 decl -hidden str phantom_sel_buffer
 decl -hidden str-list phantom_selections
 decl -hidden range-specs phantom_selections_ranges
 
-def -hidden phantom-sel-set-option-from-mark %{
+addhl global/ ranges phantom_selections_ranges
+
+def -hidden phantom-sel-highlight-current-selections %{
     eval -buffer %opt{phantom_sel_buffer} "unset-option buffer phantom_selections_ranges"
     set buffer phantom_selections_ranges %val{timestamp}
     eval -draft -itersel %{
         set -add buffer phantom_selections_ranges "%val{selection_desc}|PhantomSelection"
     }
     set global phantom_sel_buffer %val{bufname}
-    try %{ addhl window/ ranges phantom_selections_ranges }
 }
 
 def -hidden phantom-sel-iterate-impl -params 1 %{
@@ -24,7 +25,7 @@ def -hidden phantom-sel-iterate-impl -params 1 %{
         try %{
             eval -draft %{
                 exec -save-regs '' '<a-space>Z'
-                phantom-sel-set-option-from-mark
+                phantom-sel-highlight-current-selections
                 set global phantom_selections %reg{^}
             }
             exec <space>
@@ -50,7 +51,6 @@ Remove all phantom selections
     set global phantom_selections ''
     eval -buffer %opt{phantom_sel_buffer} "unset-option buffer phantom_selections_ranges"
     set global phantom_sel_buffer ''
-    rmhl window/hlranges_phantom_selections
 }
 
 def phantom-sel-select-all -docstring "
@@ -65,11 +65,11 @@ Select all phantom selections
 def phantom-sel-add-selection -docstring "
 Create phantoms out of the current selections
 " %{
-    eval -draft -save-regs '^' %{
+    eval -draft -save-regs ^ %{
         reg ^ %opt{phantom_selections}
         try %{ exec "<a-z>a" }
         exec -save-regs '' "Z"
-        phantom-sel-set-option-from-mark
+        phantom-sel-highlight-current-selections
         set global phantom_selections %reg{^}
     }
 }
