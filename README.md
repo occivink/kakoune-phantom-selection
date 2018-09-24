@@ -1,6 +1,6 @@
 # kakoune-phantom-selection
 
-[kakoune](http://kakoune.org) plugin to work on multiple selection one by one.
+[kakoune](http://kakoune.org) plugin to work on multiple selection one by one. Just a thin wrapper around marks to solve a common use-case.
 
 [![demo](https://asciinema.org/a/152289.png)](https://asciinema.org/a/152289)
 
