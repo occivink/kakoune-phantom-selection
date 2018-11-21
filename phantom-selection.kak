@@ -58,7 +58,10 @@ Select all phantom selections
 " %{
     eval -save-regs ^ %{
         reg ^ %opt{phantom_selections}
-        try %{ exec <a-z>a }
+        try %{
+            exec <a-z>a
+            echo ""
+        }
     }
 }
 
