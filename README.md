@@ -8,6 +8,21 @@
 
 Add `phantom-selection.kak` to your autoload dir: `~/.config/kak/autoload/`, or source it manually.
 
+## [Plug.kak](https://github.com/andreyorst/plug.kak)
+
+```
+plug 'occivink/kakoune-phantom-selection' config %{
+    declare-user-mode phantom
+    map global user p ": enter-user-mode -lock phantom" -docstring "phantom-selection"
+    map global phantom  ": phantom-sel-add-selection" -docstring "add selection"
+    map global phantom  ": phantom-sel-select-all: phantom-sel-iterate-next" -docstring "clear selection"
+    map global phantom ) ": phantom-sel-iterate-next" -docstring "next"
+    map global phantom ( ": phantom-sel-iterate-prev" -docstring "prev"
+    map global phantom '%' ": phantom-sel-select-all" -docstring "select all"
+    map global phantom  ": phantom-sel-clear" -docstring "clear all"
+}
+```
+
 ## Usage
 
 With multiple selections, call `phantom-sel-iterate-next` or `phantom-sel-iterate-prev`. The main selection will remain, and the others will be put in a "dormant" state (but still visible). You can then cycle back and forwards by calling these commands again.  
