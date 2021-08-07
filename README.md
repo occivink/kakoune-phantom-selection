@@ -1,14 +1,5 @@
 # kakoune-phantom-selection
 
-**Warning**: for namespacing reasons, the command names recently changed as follow:
-```
-phantom-sel-add-selection -> phantom-selection-add-selection
-phantom-sel-select-all    -> phantom-selection-select-all
-phantom-sel-clear         -> phantom-selection-clear
-phantom-sel-iterate-next  -> phantom-selection-iterate-next
-phantom-sel-iterate-prev  -> phantom-selection-iterate-prev
-```
-
 [kakoune](http://kakoune.org) plugin to work on multiple selection one by one. Just a thin wrapper around marks to solve a common use-case.
 
 [![demo](https://asciinema.org/a/152289.png)](https://asciinema.org/a/152289)
