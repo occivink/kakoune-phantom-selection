@@ -21,11 +21,15 @@ def -hidden phantom-selection-iterate-impl -params 1 %{
         exec %arg{1}
         # keep the main selection and put all the other in the mark
         try %{
+            # A proposed change to Kakoune swaps <space> with "," (and
+            # <a-space> with <a-,>). Try both to make sure we clear selections
+            # both with and without this breaking change. Pad them with <esc>
+            # to cancel out the key with the other behavior.
             eval -draft %{
-                exec -save-regs '' '<a-space>Z'
+                exec -save-regs '' '<a-space><esc><a-,><esc>Z'
                 phantom-selection-store-and-highlight
             }
-            exec <space>
+            exec <space><esc>,<esc>
         }
     }
 }
