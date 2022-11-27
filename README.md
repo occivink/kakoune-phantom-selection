@@ -34,6 +34,10 @@ map global insert <a-F> "<esc>: phantom-selection-iterate-prev<ret>i"
 
 The script can be modified by changing the value of the face `PhantomSelection` (default `black,green+F`), you probably want to keep the face 'final' by setting the `+F` attribute.
 
+## Tests
+
+The `test.kak` file contains tests for the plugin. To execute these tests, simply run `kak -n -e 'source test.kak ; exit'`: if the kakoune instance stays open, the tests have somehow failed and the current state can be inspected.
+
 ## License
 
 Unlicense
