@@ -29,6 +29,8 @@ define-command -hidden phantom-selection-iterate-impl -params 1 %{
             exec -save-regs '' 'Z'
             phantom-selection-store-and-highlight
             exec '<space><esc><,><esc>'
+        } catch %{
+            fail 'No phantom selections'
         }
     }
 }
@@ -60,6 +62,8 @@ Select all phantom selections
         try %{
             exec z
             echo ""
+        } catch %{
+            fail 'No phantom selections'
         }
     }
 }

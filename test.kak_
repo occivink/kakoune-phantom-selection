@@ -8,8 +8,19 @@ try %{
 define-command assert-selections-are -params 2 %{
     eval %sh{
         if [ "$1" != "$kak_quoted_selections" ]; then
-            printf 'fail "Check %s failed"\n' "$2"
+            printf 'error'"
         fi
+    }
+}
+
+define-command assert-command-fails -params 1 %{
+    eval -save-regs e %{
+        reg e ''
+        try %{
+            eval %arg{1}
+            reg e 'error'
+        }
+        eval %reg{e}
     }
 }
 
@@ -41,11 +52,11 @@ exec 'gg'
 # all operations should be noop after clearing
 phantom-selection-clear
 assert-selections-are "'f'" 9
-phantom-selection-iterate-next
+assert-command-fails phantom-selection-iterate-next
 assert-selections-are "'f'" 10
-phantom-selection-iterate-prev
+assert-command-fails phantom-selection-iterate-prev
 assert-selections-are "'f'" 11
-phantom-selection-select-all
+assert-command-fails phantom-selection-select-all
 assert-selections-are "'f'" 12
 
 delete-buffer
